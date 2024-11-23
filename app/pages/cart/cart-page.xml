@@ -1,0 +1,25 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-50">
+    <ActionBar title="Shopping Cart">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" tap="onBackButtonTap"/>
+    </ActionBar>
+
+    <GridLayout rows="*, auto">
+        <ListView row="0" items="{{ cart }}" class="list-group">
+            <ListView.itemTemplate>
+                <GridLayout columns="auto, *, auto" class="game-card">
+                    <Image src="{{ game.imageUrl }}" width="50" height="50" col="0" class="rounded"/>
+                    <StackLayout col="1" class="ml-2">
+                        <Label text="{{ game.title }}" class="font-bold"/>
+                        <Label text="{{ priceType + ' - $' + price }}" class="text-gray-600"/>
+                    </StackLayout>
+                    <Button text="Remove" tap="onRemoveFromCart" col="2" class="bg-red-500 text-white p-2 rounded"/>
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+
+        <StackLayout row="1" class="p-4 bg-white">
+            <Label text="{{ 'Total: $' + cartTotal }}" class="text-xl font-bold"/>
+            <Button text="Checkout" tap="onCheckout" class="bg-indigo-600 text-white p-4 rounded-lg mt-2"/>
+        </StackLayout>
+    </GridLayout>
+</Page>

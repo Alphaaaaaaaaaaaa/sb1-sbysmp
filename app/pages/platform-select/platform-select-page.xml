@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-50">
+    <ActionBar title="PlayStation Game Manager">
+        <ActionItem text="Admin" ios.position="right" android.position="actionBar" tap="onNavigateToAdmin"/>
+    </ActionBar>
+    
+    <StackLayout class="p-4">
+        <Label text="Select Platform" class="text-2xl font-bold mb-4 text-center" />
+        
+        <GridLayout columns="*, *" rows="auto" class="mb-4">
+            <Button text="PS4" tap="onSelectPS4" col="0" class="{{ selectedPlatform.type === 'PS4' ? 'platform-button platform-button-active' : 'platform-button' }}" />
+            <Button text="PS5" tap="onSelectPS5" col="1" class="{{ selectedPlatform.type === 'PS5' ? 'platform-button platform-button-active' : 'platform-button' }}" />
+        </GridLayout>
+
+        <StackLayout class="bg-white p-4 rounded-lg">
+            <Label text="Platform Details" class="text-xl font-bold mb-2" />
+            <Label text="{{ 'Storage: ' + selectedPlatform.usedStorage + 'GB / ' + selectedPlatform.totalStorage + 'GB' }}" class="mb-2" />
+            <Label text="{{ 'Remaining: ' + remainingStorage + 'GB' }}" class="mb-2" />
+            <Label text="{{ 'Total Spent: $' + selectedPlatform.totalSpent }}" class="mb-2" />
+        </StackLayout>
+
+        <Button text="Browse Store" tap="onNavigateToStore" class="bg-indigo-600 text-white p-4 rounded-lg mt-4" />
+    </StackLayout>
+</Page>

@@ -1,0 +1,33 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-50">
+    <ActionBar title="Game Store">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" tap="onBackButtonTap"/>
+        <ActionItem ios.position="right" android.position="actionBar" tap="onViewCart">
+            <Label text="{{ 'Cart ($' + cartTotal + ')' }}" class="text-white"/>
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout rows="auto, *">
+        <GridLayout row="0" columns="*, *" class="p-4">
+            <Button text="PS4" tap="onSelectPS4" col="0" class="{{ platform === 'PS4' ? 'platform-button platform-button-active' : 'platform-button' }}"/>
+            <Button text="PS5" tap="onSelectPS5" col="1" class="{{ platform === 'PS5' ? 'platform-button platform-button-active' : 'platform-button' }}"/>
+        </GridLayout>
+
+        <ListView row="1" items="{{ filteredGames }}" class="list-group">
+            <ListView.itemTemplate>
+                <GridLayout rows="auto, auto" columns="auto, *" class="game-card">
+                    <Image src="{{ imageUrl }}" width="80" height="80" row="0" col="0" class="rounded"/>
+                    <StackLayout row="0" col="1" class="ml-2">
+                        <Label text="{{ title }}" class="font-bold"/>
+                        <Label text="{{ size + 'GB' }}" class="text-gray-600"/>
+                        <Label text="{{ description }}" textWrap="true" class="text-sm text-gray-600"/>
+                    </StackLayout>
+                    <GridLayout row="1" col="0" colSpan="2" columns="*, *, *" class="mt-2">
+                        <Button text="{{ 'Offline $' + prices.offline }}" tap="onAddToCart" class="price-button" col="0"/>
+                        <Button text="{{ 'Online $' + prices.online }}" tap="onAddToCart" class="price-button" col="1"/>
+                        <Button text="{{ 'Primary $' + prices.primary }}" tap="onAddToCart" class="price-button" col="2"/>
+                    </GridLayout>
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
+</Page>

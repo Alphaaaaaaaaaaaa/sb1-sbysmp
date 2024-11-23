@@ -1,0 +1,29 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-50">
+    <ActionBar title="Games Management" class="bg-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+    
+    <GridLayout rows="auto, *">
+        <StackLayout row="0" class="p-4 bg-white">
+            <Button text="Add New Game" tap="onShowAddGameDialog" class="bg-indigo-600 text-white p-4 rounded-lg" />
+            
+            <GridLayout columns="*, *" class="mt-4">
+                <Label text="{{ 'Storage: ' + selectedPlatform.usedStorage + 'GB / ' + selectedPlatform.totalStorage + 'GB' }}" col="0" />
+                <Label text="{{ 'Spent: $' + selectedPlatform.totalSpent }}" col="1" textAlignment="right" />
+            </GridLayout>
+        </StackLayout>
+
+        <ListView row="1" items="{{ selectedPlatform.games }}" class="list-group">
+            <ListView.itemTemplate>
+                <GridLayout columns="*, auto, auto" class="game-card">
+                    <StackLayout col="0">
+                        <Label text="{{ title }}" class="font-bold" />
+                        <Label text="{{ size + 'GB' }}" class="text-gray-600" />
+                    </StackLayout>
+                    <Label col="1" text="{{ '$' + price }}" class="mr-4" />
+                    <Button col="2" text="Remove" tap="onRemoveGame" class="bg-red-500 text-white p-2 rounded" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
+</Page>

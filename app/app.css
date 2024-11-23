@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.platform-button {
+    background-color: #ffffff;
+    border-width: 1;
+    border-color: #e5e7eb;
+    border-radius: 8;
+    padding: 12;
+    margin: 8;
+}
+
+.platform-button-active {
+    background-color: #4338ca;
+    color: #ffffff;
+}
+
+.game-card {
+    background-color: #ffffff;
+    border-radius: 12;
+    margin: 8;
+    padding: 16;
+    elevation: 2;
+}
+
+.input {
+    border-width: 1;
+    border-color: #e5e7eb;
+    border-radius: 8;
+    padding: 12;
+    margin: 4;
+}
+
+.price-button {
+    background-color: #f3f4f6;
+    border-radius: 6;
+    padding: 8;
+    margin: 2;
+    font-size: 12;
+}

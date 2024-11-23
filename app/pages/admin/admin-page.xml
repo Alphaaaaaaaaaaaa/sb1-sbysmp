@@ -1,0 +1,40 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-50">
+    <ActionBar title="Admin Panel">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" tap="onBackButtonTap"/>
+    </ActionBar>
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Label text="Add New Game" class="text-xl font-bold mb-4"/>
+            
+            <TextField hint="Game Title" text="{{ newGame.title }}" class="input mb-2"/>
+            <TextField hint="Image URL" text="{{ newGame.imageUrl }}" class="input mb-2"/>
+            <TextField hint="Size (GB)" text="{{ newGame.size }}" keyboardType="number" class="input mb-2"/>
+            <TextField hint="Offline Price" text="{{ newGame.prices.offline }}" keyboardType="number" class="input mb-2"/>
+            <TextField hint="Online Price" text="{{ newGame.prices.online }}" keyboardType="number" class="input mb-2"/>
+            <TextField hint="Primary Price" text="{{ newGame.prices.primary }}" keyboardType="number" class="input mb-2"/>
+            <TextView hint="Description" text="{{ newGame.description }}" class="input mb-4" height="100"/>
+            
+            <GridLayout columns="*, *" class="mb-4">
+                <Button text="PS4" tap="onSelectPS4" col="0" class="{{ platform === 'PS4' ? 'platform-button platform-button-active' : 'platform-button' }}"/>
+                <Button text="PS5" tap="onSelectPS5" col="1" class="{{ platform === 'PS5' ? 'platform-button platform-button-active' : 'platform-button' }}"/>
+            </GridLayout>
+            
+            <Button text="Add Game" tap="onAddGame" class="bg-indigo-600 text-white p-4 rounded-lg"/>
+            
+            <Label text="Game List" class="text-xl font-bold mt-8 mb-4"/>
+            <ListView items="{{ games }}" class="list-group">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto, *, auto" class="game-card">
+                        <Image src="{{ imageUrl }}" width="50" height="50" col="0" class="rounded"/>
+                        <StackLayout col="1" class="ml-2">
+                            <Label text="{{ title }}" class="font-bold"/>
+                            <Label text="{{ size + 'GB' }}" class="text-gray-600"/>
+                        </StackLayout>
+                        <Button text="Remove" tap="onRemoveGame" col="2" class="bg-red-500 text-white p-2 rounded"/>
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</Page>
